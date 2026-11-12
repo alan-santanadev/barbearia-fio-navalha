@@ -2,7 +2,9 @@
 /* =========================================================
    IDENTIDADE VISUAL — VINTAGE TROPICAL
 ========================================================= */
-
+html {
+    scroll-behavior: smooth;
+}
 :root {
     --carvao: #211F1A;
     --oliva: #414A35;
