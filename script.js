@@ -21,10 +21,26 @@ if (menu && menuMobile) {
     });
 
     const linksMenu = menu.querySelectorAll("a");
+linksMenu.forEach(link => {
 
-    linksMenu.forEach(link => {
-        link.addEventListener("click", fecharMenu);
+    link.addEventListener("click", (event) => {
+
+        event.preventDefault();
+
+        const destino = document.querySelector(link.getAttribute("href"));
+
+        if (destino) {
+            destino.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+
+        fecharMenu();
+
     });
+
+});
 
     window.addEventListener("scroll", fecharMenu);
 
@@ -126,3 +142,29 @@ if (
     atualizarGaleria();
 
 }
+
+/* =========================================================
+   HEADER — ESCONDER AO DESCER E MOSTRAR AO SUBIR
+========================================================= */
+
+const header = document.querySelector(".header");
+
+let ultimaPosicao = window.scrollY;
+
+window.addEventListener("scroll", () => {
+
+    const posicaoAtual = window.scrollY;
+
+    if (posicaoAtual <= 100) {
+        header.classList.remove("header-oculto");
+    } 
+    else if (posicaoAtual > ultimaPosicao) {
+        header.classList.add("header-oculto");
+    } 
+    else {
+        header.classList.remove("header-oculto");
+    }
+
+    ultimaPosicao = posicaoAtual;
+
+});
